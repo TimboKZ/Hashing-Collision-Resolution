@@ -9,6 +9,8 @@ import HCR = require('./lib/hashing-collision-resolution');
 var size = 19;
 var string = 'ASEARCHINGEXAMPLE';
 
+console.log('\nTesting for string "' + string + '" and a hash table of size ' + size + '.');
+
 // Linear probing
 console.log("\nLinear Probing\n");
 var lp = new HCR.HashingCollisionResolution.LinearProbing(size, string);
