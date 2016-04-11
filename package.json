@@ -1,0 +1,29 @@
+{
+  "name": "hashing-collision-resolution",
+  "version": "1.0.0",
+  "description": "Examples of hashing collision resolution using linear probing, quadratic probing and chaining",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc index.ts --module commonjs && node ./index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TimboKZ/hashing-collision-resolution"
+  },
+  "keywords": [
+    "gaussian",
+    "elimination",
+    "visualiser"
+  ],
+  "author": "Timur Kuzhagaliyev <tim.kuzh@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TimboKZ/hashing-collision-resolution/issues"
+  },
+  "homepage": "https://github.com/TimboKZ/hashing-collision-resolution#readme",
+  "devDependencies": {
+    "easy-table": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^2.12.1"
+  }
+}
