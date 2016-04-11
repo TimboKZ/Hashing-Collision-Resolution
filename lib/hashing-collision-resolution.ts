@@ -27,8 +27,12 @@ export module HashingCollisionResolution {
                 result.push(state);
             }
 
-            return result;
+            return this.decorate(result);
 
+        }
+
+        protected decorate(result:string[][]):string[][] {
+            return result;
         }
 
         protected abstract step(previousState:string[], character:string):string[];
@@ -109,6 +113,72 @@ export module HashingCollisionResolution {
             }
 
             return currentState;
+
+        }
+
+    }
+
+    export class Chaining extends Resolution {
+
+        private counter:number[];
+
+        public constructor(size:number, string:string) {
+            super(size, string);
+            this.counter = [];
+            for(var i = 0; i < this.size; i++) {
+                this.counter[i] = 0;
+            }
+        }
+
+        protected step(previousState:string[], character:string):string[] {
+
+            // Creating a fresh array
+            var currentState = [];
+            for(var i = 0; i < previousState.length; i++) {
+                currentState[i] = ' ';
+            }
+
+            // Convert from character into index
+            var alphabetIndex = parseInt(character, 36) - 9;
+            var index = alphabetIndex % this.size;
+
+            // Chaining characters and counting amount of characters in each column
+            currentState[index] = character;
+            this.counter[index]++;
+
+            return currentState;
+
+        }
+
+        protected decorate(result:string[][]):string[][] {
+
+            // Preparing an array for the decorated result
+            var max = Math.max.apply(null, this.counter);
+            var decoratedResult = [];
+            for(var i = 0; i < max * 2 - 1; i++) {
+                decoratedResult[i] = [];
+                for(var k = 0; k < this.size; k++) {
+                    decoratedResult[i][k] = ' ';
+                }
+            }
+
+            // Decorating it to reflect chaining in an unambiguous way
+            for(var i = 0; i < result.length; i++) {
+                for(var k = 0; k < this.size; k++) {
+                    if(result[i][k] != ' ') {
+                        var j = 0;
+                        while(decoratedResult[j * 2][k] != ' ') {
+                            j++;
+                        }
+                        if(j > 0) {
+                            decoratedResult[j * 2 - 1][k] = '|';
+                        }
+                        decoratedResult[j * 2][k] = result[i][k];
+                    }
+                }
+            }
+
+            return decoratedResult;
 
         }
 
