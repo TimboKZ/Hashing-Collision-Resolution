@@ -10,6 +10,7 @@ var size = 19;
 var string = 'ASEARCHINGEXAMPLE';
 
 // Linear probing
+console.log("\nLinear Probing\n");
 var lp = new HCR.HashingCollisionResolution.LinearProbing(size, string);
 var lpResult = lp.resolve();
 var lpTable = new Table();
@@ -20,3 +21,16 @@ lpResult.forEach(function(row) {
     lpTable.newRow()
 });
 console.log(lpTable.toString())
+
+// Quadratic probing
+console.log("\nQuadratic Probing\n");
+var qp = new HCR.HashingCollisionResolution.QuadraticProbing(size, string);
+var qpResult = qp.resolve();
+var qpTable = new Table();
+qpResult.forEach(function(row) {
+    for(var i = 0; i < row.length; i++) {
+        qpTable.cell('' + i, row[i]);
+    }
+    qpTable.newRow()
+});
+console.log(qpTable.toString())

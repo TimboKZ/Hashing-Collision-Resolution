@@ -64,7 +64,46 @@ export module HashingCollisionResolution {
                     stored = true;
                 } else {
                     currentState[index] += '-';
-                    index < this.size ? index++ : index = 0;
+                    index = (index + 1) % this.size;
+                }
+
+            }
+
+            return currentState;
+
+        }
+
+    }
+
+    export class QuadraticProbing extends Resolution {
+
+        protected step(previousState:string[], character:string):string[] {
+
+            // Copying and cleaning the old array
+            var currentState = [];
+            for(var i = 0; i < previousState.length; i++) {
+                currentState[i] = previousState[i].replace('-', '');
+            }
+
+            // Convert from character into index
+            var alphabetIndex = parseInt(character, 36) - 9;
+            var index = alphabetIndex % this.size;
+            var counter = 1;
+            var acc = 1;
+
+            var stored = false;
+
+            // Using the slot if empty, try next one otherwise
+            while(!stored) {
+
+                if(currentState[index] == ' ') {
+                    currentState[index] = character;
+                    stored = true;
+                } else {
+                    currentState[index] += '-';
+                    index = (index + acc) % this.size;
+                    acc += acc;
+                    counter++;
                 }
 
             }

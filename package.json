@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/TimboKZ/hashing-collision-resolution"
+    "url": "https://github.com/TimboKZ/Hashing-Collision-Resolution"
   },
   "keywords": [
     "gaussian",
@@ -18,9 +18,9 @@
   "author": "Timur Kuzhagaliyev <tim.kuzh@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TimboKZ/hashing-collision-resolution/issues"
+    "url": "https://github.com/TimboKZ/Hashing-Collision-Resolution/issues"
   },
-  "homepage": "https://github.com/TimboKZ/hashing-collision-resolution#readme",
+  "homepage": "https://github.com/TimboKZ/Hashing-Collision-Resolution#readme",
   "devDependencies": {
     "easy-table": "^1.0.0",
     "gulp": "^3.9.1",
