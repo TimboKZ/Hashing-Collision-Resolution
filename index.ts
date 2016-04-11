@@ -4,21 +4,19 @@
 
 import Table = require('easy-table');
 
-import hashingCollisionResolution = require('./lib/hashing-collision-resolution');
+import HCR = require('./lib/hashing-collision-resolution');
 
 var size = 19;
 var string = 'ASEARCHINGEXAMPLE';
 
-var linearProbing = new hashingCollisionResolution.HashingCollisionResolution.LinearProbing(size, string);
-var linearProbingResult = linearProbing.resolve();
-
-var t = new Table();
-
-linearProbingResult.forEach(function(product) {
-    for(var i = 0; i < product.length; i++) {
-        t.cell('' + i, product[i]);
+// Linear probing
+var lp = new HCR.HashingCollisionResolution.LinearProbing(size, string);
+var lpResult = lp.resolve();
+var lpTable = new Table();
+lpResult.forEach(function(row) {
+    for(var i = 0; i < row.length; i++) {
+        lpTable.cell('' + i, row[i]);
     }
-    t.newRow()
+    lpTable.newRow()
 });
-
-console.log(t.toString())
+console.log(lpTable.toString())
